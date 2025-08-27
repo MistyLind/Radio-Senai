@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Senai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-container" id="login-container">
+        <form class="login-form" id="login-form">
+            <div class="logo">
+                <i class="fas fa-headphones"></i>
+                <span>Radio Senai</span>
+            </div>
+            <h2>Entre para continuar</h2>
+            <div class="input-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" placeholder="Digite seu usuário" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" placeholder="Digite sua senha">
+            </div>
+            <button type="submit" class="login-button">Entrar</button>
+            <p class="form-footer">Não tem uma conta? <a href="#">Inscreva-se</a></p>
+        </form>
+    </div>
+
+    <div class="app-container hidden" id="app-container">
+        
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-headphones"></i>
+                <span>Radio Senai</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li id="nav-overview" class="active"><a href="#"><i class="fas fa-compass"></i>Overview</a></li>
+                    <li id="nav-search"><a href="#"><i class="fas fa-search"></i>Search</a></li>
+                    <li id="nav-library"><a href="#"><i class="fas fa-book"></i>Library</a></li>
+                    <li id="nav-podcasts"><a href="#"><i class="fas fa-microphone-alt"></i>Podcasts</a></li>
+                </ul>
+            </nav>
+            <nav class="secondary-nav">
+                <h3>Minhas Músicas</h3>
+                <ul>
+                    <li id="nav-artists"><a href="#"><i class="fas fa-users"></i>Artists</a></li>
+                    <li id="nav-playlists"><a href="#"><i class="fas fa-list-ul"></i>Playlists</a></li>
+                    <li id="nav-saved"><a href="#"><i class="fas fa-heart"></i>Saved</a></li>
+                </ul>
+            </nav>
+            <div class="logout">
+                <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i>Log out</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/30" alt="User Profile" class="avatar">
+                </div>
+            </header>
+
+            <section id="overview-section" class="main-view active">
+                <div class="banner">
+                    <img src="images/banner_nirvana.jpg" alt="Nirvana Banner">
+                    <div class="banner-overlay">
+                        <p class="stats">1973.298 listeners in this month</p>
+                        <h1>Nirvana</h1>
+                        <button class="play-button"><i class="fas fa-play"></i> Play now</button>
+                    </div>
+                </div>
+                <h2>Popular Songs</h2>
+                <ul class="song-list" id="song-list"></ul>
+                <h2>In playlists</h2>
+                <div class="playlists-grid">
+                    <div class="playlist-card green"><p>Grunge Revolution</p></div>
+                    <div class="playlist-card orange"><p>Sounds of the 90s</p></div>
+                </div>
+            </section>
+
+            <section id="search-section" class="main-view">
+                <div class="search-bar-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="O que você quer ouvir?">
+                </div>
+                <h2>Resultados</h2>
+                <ul class="song-list" id="search-results-list"></ul>
+            </section>
+            
+            <section id="artists-section" class="main-view">
+                <h2>Artistas</h2>
+                <div class="artists-grid" id="artists-grid"></div>
+            </section>
+
+            <section id="playlists-section" class="main-view">
+                <h2>Playlists</h2>
+                <div class="playlists-grid">
+                    <div class="playlist-card purple"><p>Darkness and Rebellion</p></div>
+                    <div class="playlist-card blue"><p>Cult Rock Albums</p></div>
+                    <div class="playlist-card pink"><p>Emotion Dark Me</p></div>
+                </div>
+            </section>
+
+            <section id="saved-section" class="main-view">
+                <h2>Músicas Salvas</h2>
+                <ul class="song-list" id="saved-songs-list"></ul>
+            </section>
+        </main>
+
+        <footer class="player-bar">
+            <audio id="audio"></audio>
+            <div class="player-info">
+                <img src="images/default.jpg" alt="Album Cover" id="player-cover">
+                <div class="player-song-details">
+                    <span id="player-title">Come As You Are</span>
+                    <span id="player-artist">Nirvana</span>
+                </div>
+            </div>
+            <div class="player-controls">
+                <button class="player-action-btn"><i class="fas fa-step-backward"></i></button>
+                <button class="player-action-btn big-play-btn" id="player-play"><i class="fas fa-play"></i></button>
+                <button class="player-action-btn"><i class="fas fa-step-forward"></i></button>
+            </div>
+            <div class="player-progress">
+                <span id="player-current-time">0:00</span>
+                <div class="progress-bar-container" id="player-progress-container">
+                    <div class="progress-bar" id="player-progress"></div>
+                </div>
+                <span id="player-duration">0:00</span>
+            </div>
+            <div class="player-volume">
+                <i class="fas fa-volume-down"></i>
+                <input type="range" id="player-volume-slider" min="0" max="1" step="0.01" value="0.7">
+            </div>
+            <div class="player-options">
+                <button class="player-action-btn"><i class="fas fa-random"></i></button>
+                <button class="player-action-btn"><i class="fas fa-redo-alt"></i></button>
+                <button class="player-action-btn"><i class="fas fa-expand-alt"></i></button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
